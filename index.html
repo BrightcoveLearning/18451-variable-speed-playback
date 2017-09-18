@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Variable Speed Playback</title>
+</head>
+
+<body>
+
+  <!-- These first 2 divs create a responsive player -->
+  <div style="position: relative; display: block; max-width: 100%;">
+    <div style="padding-top: 56.25%;">
+      <!-- The player embed code -->
+      <video id="myPlayerID"
+        data-video-id="5325486425001"
+        data-account="1752604059001"
+        data-player="default"
+        data-embed="default"
+        data-application-id
+        class="video-js"
+        controls
+        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%;"></video>
+        <script src="//players.brightcove.net/1752604059001/default_default/index.min.js"></script>
+      </div>
+    </div>
+
+    <script id="pageScript" type="text/javascript">
+      // Get a reference to the player
+      var myPlayer = videojs("myPlayerID"),
+          options = {};
+
+      // Define the playback rate button options
+      options = {"playbackRates":
+                  [
+                    0.5,
+                    1,
+                    2
+                  ]
+                };
+
+      if (Array.isArray(options.playbackRates)) {
+        // Set sourceOrder to false - this means old browsers that support HLS in Flash but not HTML5/MSE will use MP4.
+        // IE will use MP4/HTML5 before HLS/Flash
+        myPlayer.options_.sourceOrder = false;
+
+        if (myPlayer.controlBar.playbackRateMenuButton) {
+          // Update the existing playback rate menu button in the control bar
+          var playbackControl = myPlayer.controlBar.playbackRateMenuButton;
+          playbackControl.removeChild(playbackControl.menu);
+          playbackControl.options_.playbackRates = options.playbackRates;
+          playbackControl.addChild(playbackControl.createMenu());
+          playbackControl.updateLabel();
+          playbackControl.updateVisibility();
+        } else {
+          // Add the playback rate menu button to the control bar
+          myPlayer.controlBar.playbackRateMenuButton = myPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+            playbackRates: options.playbackRates
+          });
+          myPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+        }
+      }
+    </script>
+
+</body>
+</html>
