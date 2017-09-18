@@ -27,7 +27,7 @@ For more information about this sample see: https://support.brightcove.com/brigh
     </tr>
     <tr>
       <td>plugin/pluginName.css</td>
-      <td>The CSS for the plugin. An example, actual filename could be <strong>registerPlugin.css</strong>.</td>
+      <td>The CSS for the plugin. An example, actual filename could be <strong>variableSpeedPlayback.css</strong>.</td>
     </tr>
   </tbody>
 </table>
