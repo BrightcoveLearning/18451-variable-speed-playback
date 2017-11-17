@@ -26,4 +26,30 @@ videojs.registerPlugin('variableSpeedPlayback', function(settings) {
     }
   }
 
+  // +++ Support for IE browsers +++
+  // This section is to keep the selected rate value from resetting to 1x when you pause and play in IE
+  if (videojs.browser.IE_VERSION){
+    console.log("IE_VERSION")
+    //get method for selected playback rate value
+    function getPlayBackRate(){
+      rateEl = document.getElementsByClassName('vjs-playback-rate-value')[0];
+      rateValue = rateEl.innerText.substr( 0, rateEl.innerText.length-1 );
+      return rateValue;
+    }
+    //get playback value when paused
+    myPlayer.on('pause', function(){
+      rateValue = getPlayBackRate();
+    });
+    myPlayer.on('ratechange',function(){
+      //get new playback rate if the player is paused
+      if(myPlayer.paused()){
+        rateValue = getPlayBackRate();
+      }
+    })
+    //set backuped playback rate when playback starts
+    myPlayer.on('play', function(){
+      myPlayer.playbackRate(rateValue);
+    });
+  }
+
 });

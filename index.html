@@ -11,7 +11,7 @@
   <!-- These first 2 divs create a responsive player -->
   <div style="position: relative; display: block; max-width: 100%;">
     <div style="padding-top: 56.25%;">
-      <!-- The player embed code -->
+      <!-- The player embed code with an id attribute -->
       <video id="myPlayerID"
         data-video-id="5325486425001"
         data-account="1752604059001"
@@ -31,13 +31,7 @@
           options = {};
 
       // Define the playback rate button options
-      options = {"playbackRates":
-                  [
-                    0.5,
-                    1,
-                    2
-                  ]
-                };
+      options = {"playbackRates":[0.5,1,2]};
 
       if (Array.isArray(options.playbackRates)) {
         // Set sourceOrder to false - this means old browsers that support HLS in Flash but not HTML5/MSE will use MP4.
@@ -59,6 +53,32 @@
           });
           myPlayer.controlBar.playbackRateMenuButton.updateVisibility();
         }
+      }
+
+      // +++ Support for IE browsers +++
+      // This section is to keep the selected rate value from resetting to 1x when you pause and play in IE
+      if (videojs.browser.IE_VERSION){
+        console.log("IE_VERSION")
+        //get method for selected playback rate value
+        function getPlayBackRate(){
+          rateEl = document.getElementsByClassName('vjs-playback-rate-value')[0];
+          rateValue = rateEl.innerText.substr( 0, rateEl.innerText.length-1 );
+          return rateValue;
+        }
+        //get playback value when paused
+        myPlayer.on('pause', function(){
+          rateValue = getPlayBackRate();
+        });
+        myPlayer.on('ratechange',function(){
+          //get new playback rate if the player is paused
+          if(myPlayer.paused()){
+            rateValue = getPlayBackRate();
+          }
+        })
+        //set backuped playback rate when playback starts
+        myPlayer.on('play', function(){
+          myPlayer.playbackRate(rateValue);
+        });
       }
     </script>
 
