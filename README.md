@@ -6,7 +6,7 @@
 
 <p>The purpose and structure of files in this repo are:</p>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Folder/Filename</th>
@@ -31,4 +31,4 @@
       <td>The CSS for the plugin. An example, actual filename could be <strong>variable-speed-playback.css</strong>.</td>
     </tr>
   </tbody>
-</table>
+</table> -->
