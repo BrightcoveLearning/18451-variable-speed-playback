@@ -4,7 +4,7 @@
 <p>The code for this sample has been archived, since this functionality is now built-in to Brightcove Player.</p>
 <p>For details, see https://player.support.brightcove.com/general/player-configuration-guide.html#playback_rates</p>
 
-<p>The purpose and structure of files in this repo are:</p>
+<!-- <p>The purpose and structure of files in this repo are:</p> -->
 
 <!-- <table>
   <thead>
