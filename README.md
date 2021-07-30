@@ -1,7 +1,8 @@
 <!-- BE SURE TO UPDATE NAME AND LINK TO DOC -->
 
 # # 18451-variable-speed-playback
-For more information about this sample see: https://support.brightcove.com/brightcove-player-sample-variable-speed-playback.
+The code for this sample is no longer needed, since this functionality is now built-in to Brightcove Player.
+For details, see https://player.support.brightcove.com/general/player-configuration-guide.html#playback_rates
 
 <p>The purpose and structure of files in this repo are:</p>
 
